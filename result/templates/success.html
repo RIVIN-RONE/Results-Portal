@@ -1,0 +1,260 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BVOC RESULT</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.js"></script>
+    <style>
+        /* Common styles */
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .table-container {
+            width: 100%;
+            max-width: 600px;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            border-right: 1px solid #ddd;
+        }
+
+        th:first-child,
+        td:first-child {
+            border-left: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #003366;
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-top: 1px solid #ddd;
+        }
+
+        td {
+            font-size: 14px;
+            color: #003366;
+            text-align: center;
+        }
+
+        h1 {
+            color: #003366;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .result-heading {
+            text-align: center;
+        }
+
+        .download-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .download-container button {
+            background-color: #45a049;
+            color: rgb(251, 253, 250);
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 23px;
+        }
+
+        .download-container button:hover {
+            background-color: #002855;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo img {
+            width: 150px;
+        }
+        .logox {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 350px; /* Adjust the width as needed */
+            height: auto;
+        }
+
+        /* Media query for desktop */
+        @media (min-width: 601px) {
+            body {
+                /* background-image: url('{% static 'images/pexels-photo-1381679.webp' %}'); */
+                /* background-size: cover; */
+            }
+        }
+
+        /* Media query for mobile */
+        @media (max-width: 600px) {
+            body {
+                /* background-image: url('{% static 'images/pexels-photo-1381679.webp' %}'); */
+                /* background-size: cover; */
+            }
+
+            h1 {
+                font-size: 20px;
+                margin-bottom: 10px;
+            }
+
+            td {
+                font-size: 14px;
+            }
+
+            .table-container {
+                padding: 10px;
+                max-width: 100%;
+            }
+            #grey {
+                background-color: grey;
+            }
+        }
+    </style>
+</head>
+<body style="background-color: rgb(236, 250, 252);">
+    <img class="logox" src="{% static 'images/LOGO FOR WEBSITE-01_1683719447.webp' %}" alt="Company Logo" >
+
+    <div class="table-container">
+        <div class="logo">
+            <img src="{% static 'images/LOGO FOR WEBSITE-01_1683719447.webp' %}" alt="Company Logo" style="width: 200px;">
+        </div>
+        <h1 class="result-heading">B VOC 2021 - Sixth Semester Result</h1>
+     
+        <h4>NAME: {{user.Name}}</h4>
+        <h4>ROLLNUMBER: {{user.Rollnumber}}</h4>
+        <table>
+            <tr>
+                <th></th>
+                <th>U E Marks</th>
+                <th>IA/CA Marks</th>
+                <th>Total Marks</th>
+                <th>Grade</th>
+            </tr>
+            <tr>
+                <th>INTERNSHIP/FINAL PROJECT</th>
+                <td>{{user.EFFP_UEM}}</td>
+                <td>{{user.EFFP_IAM}}</td>
+                <td>{{user.EFFP_TM}}</td>
+                <td>{{user.EFFP_G}}</td>
+            </tr>
+            <tr>
+                <th>GROUP ONE</th>
+                <td>{{user.AIB_UEM}}</td>
+                <td>{{user.AIB_IAM}}</td>
+                <td>{{user.AIB_TM}}</td>
+                <td>{{user.AIB_G}}</td>
+            </tr>
+            <tr>
+                <th>GROUP TWO</th>
+                <td>{{user.FA_UEM}}</td>
+                <td>{{user.FA_IAM}}</td>
+                <td>{{user.FA_TM}}</td>
+                <td>{{user.FA_G}}</td>
+            </tr>
+            <tr>
+                <th>GROUP THREE</th>
+                <td>{{user.AGO_UEM}}</td>
+                <td>{{user.AGO_IAM}}</td>
+                <td>{{user.AGO_TM}}</td>
+                <td>{{user.AGO_G}}</td>
+            </tr>
+            <tr>
+                <th>Generic GROUP One</th>
+                <td>{{user.SGO_UEM}}</td>
+                <td>{{user.SGO_IAM}}</td>
+                <td>{{user.SGO_TM}}</td>
+                <td>{{user.SGO_G}}</td>
+            </tr>
+            <tr style="height: 10px;">
+                <td style="background-color: rgb(233, 233, 235);" colspan="5" ></td>
+            </tr>
+            
+            <tr>
+                <th colspan="2">Total theory marks</th>
+                <td colspan="4" style="text-align: center ;">{{user.TTM}}</td>
+            </tr>
+            <tr>
+                <th colspan="2">Total internal marks</th>
+                <td colspan="4" style="text-align: center;">{{user.TIM}}</td> 
+            </tr>
+            <tr>
+                <th colspan="2">Total CA Marks</th>
+                <td colspan="4" style="text-align: center;">{{user.TCM}}</td> 
+            </tr>
+            <tr>
+                <th colspan="2">Grand Total</th>
+                <td colspan="4" style="text-align: center;">{{user.GT}}</td> 
+            </tr>
+            <tr>
+                <th colspan="2">Percentage</th>
+                <td style="text-align: center;" colspan="4">{{user.P}}</td> 
+            </tr>
+            <tr>
+                <th colspan="2">Result</th>
+                <td colspan="4" style="text-align: center;">{{user.R}}</td> 
+            </tr>
+            <tr>
+                <th colspan="2">No of Subject failed</th>
+                <td colspan="4" style="text-align: center;">{{user.NOSF}}</td> 
+            </tr>
+            <tr>
+                <th colspan="2">SGPA</th>
+                <td colspan="4" style="text-align: center;">{{user.S}}</td> 
+            </tr>
+        </table>
+    </div>
+
+    <div class="download-container">
+        <button onclick="downloadAsPDF()">Download Result</button>
+    </div>
+
+    <script>
+        function downloadAsPDF() {
+            const button = document.querySelector('.download-container');
+            button.style.display = 'none'; // Hide the download button temporarily
+
+            const element = document.querySelector('.table-container');
+            html2pdf()
+                .set({
+                    margin: 10,
+                    filename: 'RESULT-BVOC.pdf',
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { scale: 2 },
+                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                })
+                .from(element)
+                .save();
+
+            button.style.display = 'block'; // Show the download button again
+        }
+    </script>
+</body>
+</html>

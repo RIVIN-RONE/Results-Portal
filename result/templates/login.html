@@ -1,0 +1,199 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        @media all and (min-width: 480px) {
+    #deskContent {display:block;}
+    #phoneContent {display:none;}
+}
+
+@media all and (max-width: 479px) {
+    #deskContent {display:none;}
+    #phoneContent {display:block;}
+}
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 300px;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.9);
+            position: relative;
+            text-align: center;
+        }
+
+        .logo {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 200px;
+            height: auto;
+        }
+        position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 250px;
+            height: auto;
+        .container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 3px;
+            width: 100%;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 20px;
+        }
+
+        .form-group button {
+            background-color: #4CAF50;
+            color: #fff;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        /* Mobile styles */
+        @media (max-width: 767px) {
+            body {
+                
+                background-image: url("{% static 'images/BANNER 1800x1900.jpg' %}");
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+
+            /* .container {
+                background-color: rgba(255, 255, 255, 0.8);
+            } */
+        }
+
+        /* Desktop styles */
+        @media (min-width: 768px) {
+            body {
+                background-image: url("{% static 'images/BANNER NEW.jpg' %}");
+                background-repeat: no-repeat;
+                background-size: cover;
+                
+            }
+        }
+    </style>
+
+    
+     <script>
+        function convertToUppercase(inputElement) {
+            inputElement.value = inputElement.value.toUpperCase();
+        }
+    </script>
+    
+</head>
+<body>
+    <img src="{% static 'images/logo-new-yellow_1680778606.webp' %}" alt="Logo" class="logo" id="phoneContent">
+    <img  src="{% static 'images/LOGO FOR WEBSITE-01_1683719447.webp' %}" alt="Logo" style=" position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 350px;
+    height: auto;" id="deskContent">
+
+
+
+    <div class="container" id="phoneContent">
+        <h2>IIC Lakshya Result Portal</h2>
+        {% if messages %}
+        <ul style=" list-style: none;margin-bottom: 10px;">
+            {% for message in messages %}
+            <li{% if message.tags %} style="color: #f50d0d;" class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="DOB">DOB:</label>
+                <input type="text" name="DOB" id="DOB" oninput="convertToUppercase(this)" required>
+            </div>
+            <div class="form-group">
+                <label for="Rollnumber">Roll Number:</label>
+                <input type="text" name="Rollnumber" id="Rollnumber" oninput="convertToUppercase(this)"  required>
+            </div>
+            <div class="form-group">
+                <button type="submit">Login</button>
+            </div>
+        </form>
+    </div>
+    <div  id="deskContent" style=" background-color: #fff; border-radius: 20px;box-shadow: 0 5px 15px rgba(0, 0, 0, 0.9); text-align: center; padding: 70px; ">
+        <h2 style="font-size: 40px;font-weight: bold;margin-bottom: 30px;color: #333;overflow: hidden;
+         animation: slide-in 1s ease-in-out forwards; font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">IIC Lakshya Result Portal</h2>
+        {% if messages %}
+        <ul style=" list-style: none;margin-bottom: 10px;">
+            {% for message in messages %}
+            <li{% if message.tags %} style="color: #f50d0d;" class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <div style=" margin-bottom: 20px;">
+                <label style="display: block;
+                font-weight: bold;
+                color: #555;" for="Name" >DOB</label>
+                <input style="width: 100%;
+                padding: 10px;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+                font-size: 26px;" type="text" name="DOB" id="DOB" oninput="convertToUppercase(this)"  required>
+            </div>
+            <div style=" margin-bottom: 20px;">
+                <label style="display: block;
+                font-weight: bold;
+                color: #555;" for="Rollnumber">Roll Number:</label>
+                <input style="width: 100%;
+                padding: 10px;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+                font-size: 26px;" type="text" name="Rollnumber" id="Rollnumber" oninput="convertToUppercase(this)" required>
+            </div>
+            <div class="form-group">
+                <button style="background-color: #4CAF50;
+                color: #fff;
+                width: 100%;
+                cursor: pointer;
+                font-size: 24px;
+                font-weight: bold;
+                padding: 10px 20px;
+                border: none;" type="submit">Login</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
